@@ -3,9 +3,8 @@
 An Aseprite extension that quietly snapshots your work as you draw, and turns
 those snapshots into a timelapse. Requires **Aseprite 1.3 or newer**.
 
-> Status: early. This version adds the menu, the on/off toggle and the settings
-> dialog. Snapshot capture, rename following and export arrive in the next
-> releases.
+> Status: early. Toggle, settings and automatic snapshots work. Rename
+> following and timelapse export arrive in the next releases.
 
 ## Install
 
@@ -27,8 +26,13 @@ There is no default keyboard shortcut. To add one, open
 
 ## Where snapshots go
 
-Next to your project file, in `snapshots/<project name>/`. If you rename the
-project with Save As, the folder is renamed with it.
+Next to your project file, in `snapshots/<project name>/`, as PNG files named
+`<number>_<date-time>_f<frame>.png` (an `_s2`, `_s3`... suffix means the image
+was saved at 1/2, 1/3... size to stay under the size cap). The project must be
+saved at least once before snapshots start. Following renames is coming next.
+
+Each snapshot is the frame you are working on, with visible layers flattened.
+A snapshot identical to the previous one is skipped.
 
 ## Settings
 

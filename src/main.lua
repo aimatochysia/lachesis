@@ -1,7 +1,7 @@
 -- Lachesis: Aseprite snapshot extension entry point.
 -- Requires Aseprite 1.3 or newer.
 
-local Config
+local Config, Snapshotter
 
 local function loadModule(plugin, name)
   return dofile(app.fs.joinPath(plugin.path, "src", name .. ".lua"))
@@ -22,6 +22,10 @@ function init(plugin)
 
   Config = loadModule(plugin, "config")
   Config.init(plugin)
+  local Storage = loadModule(plugin, "storage")
+  local Capture = loadModule(plugin, "capture")
+  Snapshotter = loadModule(plugin, "snapshotter")
+  Snapshotter.init(Config, Storage, Capture)
 
   plugin:newMenuGroup{
     id = "lachesis_snapshots",
@@ -36,7 +40,9 @@ function init(plugin)
     group = "lachesis_snapshots",
     onchecked = function() return Config.isEnabled() end,
     onclick = function()
-      Config.setEnabled(not Config.isEnabled())
+      local on = not Config.isEnabled()
+      Config.setEnabled(on)
+      if on then Snapshotter.start() else Snapshotter.stop() end
     end,
   }
 
@@ -52,4 +58,5 @@ end
 
 function exit(plugin)
   -- plugin.preferences is saved by Aseprite automatically.
+  if Snapshotter then Snapshotter.shutdown() end
 end
