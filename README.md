@@ -39,3 +39,16 @@ project with Save As, the folder is renamed with it.
 | Max size | 1024 KB | Cap per snapshot; larger images are saved downscaled |
 
 Nothing is saved while you are not editing.
+
+## Releases
+
+Releases are built by GitHub Actions and are only started by hand:
+**Actions > Release > Run workflow** on `main`, then pick a bump.
+
+| Bump | Example | Use for |
+| --- | --- | --- |
+| `minor` | v0.3.2 → v0.4.0 | New dev release with features |
+| `patch` | v0.3.2 → v0.3.3 | Bug fixes and small updates |
+
+The major number stays at 0 for now. The first release is v0.0.1 (patch) or
+v0.1.0 (minor). Each release attaches `lachesis-vX.Y.Z.aseprite-extension`.

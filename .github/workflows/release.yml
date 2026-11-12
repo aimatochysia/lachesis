@@ -1,0 +1,81 @@
+name: Release
+
+# Manual run only: Actions > Release > Run workflow.
+# Versions are v0.y.z: "minor" bumps y and resets z, "patch" bumps z.
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Version bump"
+        type: choice
+        options:
+          - patch
+          - minor
+        default: patch
+      notes:
+        description: "Release notes (optional)"
+        type: string
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only release from main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          echo "Releases must be run from main (got ${GITHUB_REF})."
+          exit 1
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute next version
+        id: version
+        run: |
+          latest=$(git tag --list 'v*.*.*' --sort=-v:refname | head -n 1)
+          [ -z "$latest" ] && latest="v0.0.0"
+          IFS=. read -r major minor patch <<< "${latest#v}"
+          case "${{ inputs.bump }}" in
+            minor) minor=$((minor + 1)); patch=0 ;;
+            patch) patch=$((patch + 1)) ;;
+          esac
+          next="v${major}.${minor}.${patch}"
+          echo "Previous: $latest  Next: $next"
+          echo "tag=$next" >> "$GITHUB_OUTPUT"
+          echo "number=${next#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Stamp version into package.json
+        run: |
+          jq --arg v "${{ steps.version.outputs.number }}" '.version = $v' package.json > package.tmp
+          mv package.tmp package.json
+
+      - name: Check Lua syntax
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lua5.4
+          for f in src/*.lua; do luac5.4 -p "$f"; done
+
+      - name: Build extension
+        run: |
+          ./scripts/build.sh
+          mv dist/lachesis.aseprite-extension "dist/lachesis-${{ steps.version.outputs.tag }}.aseprite-extension"
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NOTES: ${{ inputs.notes }}
+        run: |
+          tag="${{ steps.version.outputs.tag }}"
+          if [ -n "$NOTES" ]; then
+            gh release create "$tag" dist/*.aseprite-extension --target "$GITHUB_SHA" --title "$tag" --notes "$NOTES"
+          else
+            gh release create "$tag" dist/*.aseprite-extension --target "$GITHUB_SHA" --title "$tag" --generate-notes
+          fi
