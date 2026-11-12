@@ -1,0 +1,15 @@
+{
+  "name": "lachesis",
+  "displayName": "Lachesis",
+  "description": "Automatic snapshots of your Aseprite work, exportable as a timelapse.",
+  "version": "0.1.0",
+  "author": { "name": "aimatochysia" },
+  "contributors": [],
+  "publisher": "aimatochysia",
+  "categories": ["Scripts"],
+  "contributes": {
+    "scripts": [
+      { "path": "./src/main.lua" }
+    ]
+  }
+}
