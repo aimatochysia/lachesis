@@ -1,0 +1,15 @@
+{
+  "name": "lachesis-dyo",
+  "displayName": "Lachesis Dyo",
+  "description": "Remembers the sprites you have open and reopens them the next time Aseprite starts, like a browser restoring its last tabs.",
+  "version": "0.0.0",
+  "author": { "name": "aimatochysia" },
+  "contributors": [],
+  "publisher": "aimatochysia",
+  "categories": ["Scripts"],
+  "contributes": {
+    "scripts": [
+      { "path": "./src/main.lua" }
+    ]
+  }
+}
