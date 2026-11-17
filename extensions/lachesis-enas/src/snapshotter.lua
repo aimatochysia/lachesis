@@ -1,4 +1,4 @@
--- Lachesis: watch sprites for edits and snapshot after the user pauses.
+-- Lachesis Enas: watch sprites for edits and snapshot after the user pauses.
 --
 -- An edit marks the sprite dirty. A single timer checks dirty sprites and
 -- captures once the user has been idle for idleDelay seconds, or after
@@ -54,7 +54,7 @@ function Snapshotter.capture(sprite)
     function(scale) return Storage.nextPath(dir, frame, scale) end,
     maxBytes, palette)
   if not ok then
-    print("Lachesis: could not save snapshot: " .. tostring(err))
+    print("Lachesis Enas: could not save snapshot: " .. tostring(err))
   end
 end
 

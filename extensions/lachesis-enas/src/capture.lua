@@ -1,4 +1,4 @@
--- Lachesis: flatten a frame into an image and write it as a PNG,
+-- Lachesis Enas: flatten a frame into an image and write it as a PNG,
 -- keeping each file under the configured size cap.
 
 local Capture = {}
@@ -58,7 +58,7 @@ local function chooseScale(img, maxBytes, palette)
   if img.width * img.height * bytesPerPixel(img) <= maxBytes then
     return 1, img
   end
-  local probe = app.fs.joinPath(app.fs.tempPath, "lachesis-probe.png")
+  local probe = app.fs.joinPath(app.fs.tempPath, "lachesis-enas-probe.png")
   local k = 1
   local candidate = img
   while true do
