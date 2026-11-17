@@ -1,4 +1,4 @@
--- Lachesis: settings, defaults and persistence through plugin.preferences.
+-- Lachesis Enas: settings, defaults and persistence through plugin.preferences.
 
 local Config = {}
 
@@ -58,7 +58,7 @@ function Config.setEnabled(on)
 end
 
 function Config.showDialog()
-  local dlg = Dialog{ title = "Lachesis Snapshot Settings" }
+  local dlg = Dialog{ title = "Lachesis Enas Settings" }
   dlg:separator{ text = "Capture" }
   dlg:number{
     id = "idleDelay", label = "Idle delay (s):",

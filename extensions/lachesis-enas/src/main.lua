@@ -1,4 +1,4 @@
--- Lachesis: Aseprite snapshot extension entry point.
+-- Lachesis Enas: Aseprite snapshot extension entry point.
 -- Requires Aseprite 1.3 or newer.
 
 local Config, Snapshotter
@@ -14,8 +14,8 @@ end
 function init(plugin)
   if not versionSupported() then
     app.alert{
-      title = "Lachesis",
-      text = "Lachesis needs Aseprite 1.3 or newer. The extension is disabled.",
+      title = "Lachesis Enas",
+      text = "Lachesis Enas needs Aseprite 1.3 or newer. The extension is disabled.",
     }
     return
   end
@@ -28,16 +28,16 @@ function init(plugin)
   Snapshotter.init(Config, Storage, Capture)
 
   plugin:newMenuGroup{
-    id = "lachesis_snapshots",
+    id = "lachesis_enas_snapshots",
     title = "Snapshots",
     group = "file_scripts",
   }
 
   -- No default shortcut: users can bind one in Edit > Keyboard Shortcuts.
   plugin:newCommand{
-    id = "LachesisToggleSnapshots",
+    id = "LachesisEnasToggleSnapshots",
     title = "Snapshots Enabled",
-    group = "lachesis_snapshots",
+    group = "lachesis_enas_snapshots",
     onchecked = function() return Config.isEnabled() end,
     onclick = function()
       local on = not Config.isEnabled()
@@ -46,12 +46,12 @@ function init(plugin)
     end,
   }
 
-  plugin:newMenuSeparator{ group = "lachesis_snapshots" }
+  plugin:newMenuSeparator{ group = "lachesis_enas_snapshots" }
 
   plugin:newCommand{
-    id = "LachesisSettings",
+    id = "LachesisEnasSettings",
     title = "Snapshot Settings...",
-    group = "lachesis_snapshots",
+    group = "lachesis_enas_snapshots",
     onclick = function() Config.showDialog() end,
   }
 end

@@ -1,6 +1,6 @@
 {
-  "name": "lachesis",
-  "displayName": "Lachesis",
+  "name": "lachesis-enas",
+  "displayName": "Lachesis Enas",
   "description": "Automatic snapshots of your Aseprite work, exportable as a timelapse.",
   "version": "0.0.0",
   "author": { "name": "aimatochysia" },

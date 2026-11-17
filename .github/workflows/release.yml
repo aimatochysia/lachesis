@@ -53,20 +53,24 @@ jobs:
           echo "tag=$next" >> "$GITHUB_OUTPUT"
           echo "number=${next#v}" >> "$GITHUB_OUTPUT"
 
-      - name: Stamp version into package.json
+      - name: Stamp version into every package.json
         run: |
-          jq --arg v "${{ steps.version.outputs.number }}" '.version = $v' package.json > package.tmp
-          mv package.tmp package.json
+          for p in extensions/*/package.json; do
+            jq --arg v "${{ steps.version.outputs.number }}" '.version = $v' "$p" > "$p.tmp"
+            mv "$p.tmp" "$p"
+          done
 
       - name: Check Lua syntax
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lua5.4
-          for f in src/*.lua; do luac5.4 -p "$f"; done
+          for f in extensions/*/src/*.lua; do luac5.4 -p "$f"; done
 
-      - name: Build extension
+      - name: Build extensions
         run: |
           ./scripts/build.sh
-          mv dist/lachesis.aseprite-extension "dist/lachesis-${{ steps.version.outputs.tag }}.aseprite-extension"
+          for f in dist/*.aseprite-extension; do
+            mv "$f" "${f%.aseprite-extension}-${{ steps.version.outputs.tag }}.aseprite-extension"
+          done
 
       - name: Create release
         env:
