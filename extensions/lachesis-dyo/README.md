@@ -31,4 +31,4 @@ Turn on **Also keep a crash-safe session file** in the settings to also write th
 
 ## Install
 
-Build the package from the repository root with `scripts/build.sh` (or `scripts\build.ps1` on Windows), then double-click the resulting `.aseprite-extension` file or add it in **Edit > Preferences > Extensions**.
+Build the package from the repository root with `./scripts/build.sh lachesis-dyo` (or `powershell -File scripts\build.ps1 lachesis-dyo` on Windows), then double-click the resulting `.aseprite-extension` file or add it in **Edit > Preferences > Extensions**.
