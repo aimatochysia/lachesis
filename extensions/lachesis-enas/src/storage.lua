@@ -1,4 +1,4 @@
--- Lachesis: where snapshots live and how they are named.
+-- Lachesis Enas: where snapshots live and how they are named.
 --
 -- Layout: <project dir>/snapshots/<project name>/
 -- File name: <index>_<yyyymmdd-hhmmss>_f<frame>[_s<downscale>].png
