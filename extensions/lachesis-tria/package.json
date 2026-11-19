@@ -1,0 +1,15 @@
+{
+  "name": "lachesis-tria",
+  "displayName": "Lachesis Tria",
+  "description": "A tile library for pixel art: slice tiles from the canvas, keep them in named groups, and reuse them in any project.",
+  "version": "0.0.0",
+  "author": { "name": "aimatochysia" },
+  "contributors": [],
+  "publisher": "aimatochysia",
+  "categories": ["Scripts"],
+  "contributes": {
+    "scripts": [
+      { "path": "./src/main.lua" }
+    ]
+  }
+}
