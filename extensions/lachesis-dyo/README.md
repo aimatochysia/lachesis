@@ -1,5 +1,7 @@
 # Lachesis Dyo
 
+<img src="icon.png" alt="lachesis-dyo icon" width="128">
+
 Reopens the sprites you had open the last time you used Aseprite, like a browser restoring its last tabs.
 
 Requires Aseprite 1.3 or newer. Works on Windows, macOS and Linux.

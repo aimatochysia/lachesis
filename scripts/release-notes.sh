@@ -21,6 +21,10 @@ for d in extensions/*/; do
   name=$(basename "$d")
   title=$(jq -r '.displayName // .name' "$d/package.json")
   printf '### %s (`%s`)\n\n' "$title" "$name"
+  if [ -f "$d/icon.png" ]; then
+    printf '<img src="https://raw.githubusercontent.com/%s/%s/extensions/%s/icon.png" alt="" width="64">\n\n' \
+      "${GITHUB_REPOSITORY:-aimatochysia/lachesis}" "$tag" "$name"
+  fi
   if [ -f "$d/RELEASE.md" ]; then
     cat "$d/RELEASE.md"
     printf '\n'

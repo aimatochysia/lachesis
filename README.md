@@ -4,12 +4,12 @@ A small suite of Aseprite extensions. Each one lives in its own folder under
 `extensions/` and is packaged and installed separately. All need
 **Aseprite 1.3 or newer** and work on Windows, macOS and Linux.
 
-| Extension | What it does |
-| --- | --- |
-| [lachesis-enas](extensions/lachesis-enas/README.md) | Toggleable automatic snapshots of your work, saved next to the project, for timelapses |
-| [lachesis-dyo](extensions/lachesis-dyo/README.md) | Remembers your open sprites and reopens them when Aseprite starts, like a browser restoring its last tabs |
-| [lachesis-tria](extensions/lachesis-tria/README.md) | A tile library: slice tiles from the canvas, keep them in named groups, and reuse them in any project |
-| [lachesis-tessera](extensions/lachesis-tessera/README.md) | Tiled preview of a selection: hold a key, or keep a live window open, to check that it repeats seamlessly |
+| | Extension | What it does |
+| --- | --- | --- |
+| <img src="extensions/lachesis-enas/icon.png" alt="" width="48"> | [lachesis-enas](extensions/lachesis-enas/README.md) | Toggleable automatic snapshots of your work, saved next to the project, for timelapses |
+| <img src="extensions/lachesis-dyo/icon.png" alt="" width="48"> | [lachesis-dyo](extensions/lachesis-dyo/README.md) | Remembers your open sprites and reopens them when Aseprite starts, like a browser restoring its last tabs |
+| <img src="extensions/lachesis-tria/icon.png" alt="" width="48"> | [lachesis-tria](extensions/lachesis-tria/README.md) | A tile library: slice tiles from the canvas, keep them in named groups, and reuse them in any project |
+| <img src="extensions/lachesis-tessera/icon.png" alt="" width="48"> | [lachesis-tessera](extensions/lachesis-tessera/README.md) | Tiled preview of a selection: hold a key, or keep a live window open, to check that it repeats seamlessly |
 
 ## Build
 
