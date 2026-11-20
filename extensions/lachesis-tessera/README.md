@@ -1,5 +1,7 @@
 # Lachesis Tessera
 
+<img src="icon.png" alt="lachesis-tessera icon" width="128">
+
 See whether your pixel art tiles seamlessly. Select an area and Tessera shows it repeated side by side, live, while you keep drawing on the normal canvas.
 
 Requires Aseprite 1.3 or newer. Works on Windows, macOS and Linux.

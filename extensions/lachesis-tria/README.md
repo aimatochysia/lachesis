@@ -1,5 +1,7 @@
 # Lachesis Tria
 
+<img src="icon.png" alt="lachesis-tria icon" width="128">
+
 A tile library for pixel art, like an asset library. Slice tiles out of what is visible on the canvas, keep them in named groups, and reuse them in any project.
 
 Requires Aseprite 1.3 or newer. Works on Windows, macOS and Linux.

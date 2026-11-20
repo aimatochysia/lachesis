@@ -1,5 +1,7 @@
 # Lachesis Enas
 
+<img src="icon.png" alt="lachesis-enas icon" width="128">
+
 Part of the [Lachesis](../../README.md) suite. An Aseprite extension that
 quietly snapshots your work as you draw, and turns those snapshots into a
 timelapse. Requires **Aseprite 1.3 or newer**.
