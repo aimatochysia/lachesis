@@ -72,14 +72,14 @@ jobs:
             mv "$f" "${f%.aseprite-extension}-${{ steps.version.outputs.tag }}.aseprite-extension"
           done
 
+      - name: Write release notes
+        env:
+          NOTES: ${{ inputs.notes }}
+        run: ./scripts/release-notes.sh "${{ steps.version.outputs.tag }}" "$NOTES" > dist/RELEASE_NOTES.md
+
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
-          NOTES: ${{ inputs.notes }}
         run: |
           tag="${{ steps.version.outputs.tag }}"
-          if [ -n "$NOTES" ]; then
-            gh release create "$tag" dist/*.aseprite-extension --target "$GITHUB_SHA" --title "$tag" --notes "$NOTES"
-          else
-            gh release create "$tag" dist/*.aseprite-extension --target "$GITHUB_SHA" --title "$tag" --generate-notes
-          fi
+          gh release create "$tag" dist/*.aseprite-extension --target "$GITHUB_SHA" --title "$tag" --notes-file dist/RELEASE_NOTES.md

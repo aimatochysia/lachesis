@@ -202,4 +202,51 @@ function Library.saveEntry(opts)
   return Library.entryPath(opts.group, opts.name)
 end
 
+local function samePath(a, b)
+  if a == nil or b == nil then return false end
+  if app.os.windows or app.os.macos then return a:lower() == b:lower() end
+  return a == b
+end
+
+-- Load an entry's tiles. Returns
+--   { tiles = {Image...}, colorMode, palette, transparentColor, width, height }
+-- or nil and an error message. Each frame of the entry file is one tile,
+-- flattened, so tiles edited by hand (even with extra layers) load as seen.
+function Library.loadEntry(group, name)
+  local path = Library.entryPath(group, name)
+  if not app.fs.isFile(path) then return nil, "The entry file is missing: " .. path end
+
+  -- If the user has the entry open for editing, read it without closing it.
+  local entry, opened = nil, false
+  for _, s in ipairs(app.sprites) do
+    if samePath(s.filename, path) then entry = s; break end
+  end
+  local previous = app.sprite
+  if not entry then
+    local ok, s = pcall(function() return Sprite{ fromFile = path } end)
+    if not ok or not s then return nil, "Couldn't open " .. path end
+    entry, opened = s, true
+  end
+
+  local out = {
+    tiles = {},
+    colorMode = entry.colorMode,
+    palette = Palette(entry.palettes[1]),
+    transparentColor = entry.transparentColor or 0,
+    width = entry.width,
+    height = entry.height,
+  }
+  local ok, err = pcall(function()
+    for i = 1, #entry.frames do
+      local img = Image(entry.spec)
+      img:drawSprite(entry, i)
+      out.tiles[#out.tiles + 1] = img
+    end
+  end)
+  if opened then entry:close() end
+  if previous and previous ~= app.sprite then app.sprite = previous end
+  if not ok then return nil, tostring(err) end
+  return out
+end
+
 return Library
