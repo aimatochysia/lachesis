@@ -20,7 +20,18 @@ icon_ref="${GITHUB_SHA:-$tag}"
 printf '## Extensions in this release\n\n'
 printf 'All need Aseprite 1.3 or newer and work on Windows, macOS and Linux. Double-click a downloaded `.aseprite-extension` file, or add it in **Edit > Preferences > Extensions**. Commands have no default shortcut; bind one in **Edit > Keyboard Shortcuts**.\n\n'
 
+# Extensions in suite order (Greek numerals: enas, dyo, tria, tessera...).
+# Any extension not listed here follows in alphabetical order.
+ORDER="lachesis-enas lachesis-dyo lachesis-tria lachesis-tessera"
+dirs=""
+for n in $ORDER; do
+  [ -d "extensions/$n" ] && dirs="$dirs extensions/$n/"
+done
 for d in extensions/*/; do
+  case " $ORDER " in *" $(basename "$d") "*) ;; *) dirs="$dirs $d" ;; esac
+done
+
+for d in $dirs; do
   [ -f "$d/package.json" ] || continue
   name=$(basename "$d")
   title=$(jq -r '.displayName // .name' "$d/package.json")
