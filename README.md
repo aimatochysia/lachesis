@@ -29,6 +29,9 @@ Create `extensions/<name>/` with its own `package.json` (whose `name` is
 `RELEASE.md` is a short paragraph on what the extension does plus its in-app
 menu entries; every release's notes include it. The build
 scripts and the release workflow pick it up automatically.
+Extensions are listed in suite order (enas, dyo, tria, tessera, after the Greek
+numerals); add a new one to the end of the table and to `ORDER` in
+`scripts/release-notes.sh`.
 
 ## Releases
 
