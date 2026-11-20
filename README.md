@@ -9,6 +9,7 @@ A small suite of Aseprite extensions. Each one lives in its own folder under
 | [lachesis-enas](extensions/lachesis-enas/README.md) | Toggleable automatic snapshots of your work, saved next to the project, for timelapses |
 | [lachesis-dyo](extensions/lachesis-dyo/README.md) | Remembers your open sprites and reopens them when Aseprite starts, like a browser restoring its last tabs |
 | [lachesis-tria](extensions/lachesis-tria/README.md) | A tile library: slice tiles from the canvas, keep them in named groups, and reuse them in any project |
+| [lachesis-tessera](extensions/lachesis-tessera/README.md) | Tiled preview of a selection: hold a key, or keep a live window open, to check that it repeats seamlessly |
 
 ## Build
 

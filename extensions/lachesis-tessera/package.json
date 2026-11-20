@@ -1,0 +1,15 @@
+{
+  "name": "lachesis-tessera",
+  "displayName": "Lachesis Tessera",
+  "description": "Tiled preview of a selection: hold a key to see it repeated as a seamless tile, or keep a live preview window open while you draw.",
+  "version": "0.0.0",
+  "author": { "name": "aimatochysia" },
+  "contributors": [],
+  "publisher": "aimatochysia",
+  "categories": ["Scripts"],
+  "contributes": {
+    "scripts": [
+      { "path": "./src/main.lua" }
+    ]
+  }
+}
