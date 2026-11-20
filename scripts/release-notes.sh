@@ -13,6 +13,10 @@ if [ -n "$notes" ]; then
   printf '## What'"'"'s new\n\n%s\n\n' "$notes"
 fi
 
+# Icons are linked at the commit the notes are built from, so notes rewritten
+# for an older release still find them.
+icon_ref="${GITHUB_SHA:-$tag}"
+
 printf '## Extensions in this release\n\n'
 printf 'All need Aseprite 1.3 or newer and work on Windows, macOS and Linux. Double-click a downloaded `.aseprite-extension` file, or add it in **Edit > Preferences > Extensions**. Commands have no default shortcut; bind one in **Edit > Keyboard Shortcuts**.\n\n'
 
@@ -23,7 +27,7 @@ for d in extensions/*/; do
   printf '### %s (`%s`)\n\n' "$title" "$name"
   if [ -f "$d/icon.png" ]; then
     printf '<img src="https://raw.githubusercontent.com/%s/%s/extensions/%s/icon.png" alt="" width="64">\n\n' \
-      "${GITHUB_REPOSITORY:-aimatochysia/lachesis}" "$tag" "$name"
+      "${GITHUB_REPOSITORY:-aimatochysia/lachesis}" "$icon_ref" "$name"
   fi
   if [ -f "$d/RELEASE.md" ]; then
     cat "$d/RELEASE.md"
