@@ -24,7 +24,7 @@ already on disk are untouched and keep being used.
 
 ## Use
 
-Everything is under **File > Snapshots**:
+Everything is under **File > Scripts > Snapshots**:
 
 - **Snapshots Enabled**: turns snapshotting on or off (shows a checkmark when on).
 - **Snapshot Settings...**: idle delay, max wait and the per-snapshot size cap.

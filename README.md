@@ -24,7 +24,9 @@ in Aseprite open **Edit > Preferences > Extensions > Add Extension**.
 ## Adding an extension
 
 Create `extensions/<name>/` with its own `package.json` (whose `name` is
-`<name>`), `src/` and `README.md`, then add a row to the table above. The build
+`<name>`), `src/`, `README.md` and `RELEASE.md`, then add a row to the table above.
+`RELEASE.md` is a short paragraph on what the extension does plus its in-app
+menu entries; every release's notes include it. The build
 scripts and the release workflow pick it up automatically.
 
 ## Releases
@@ -39,3 +41,6 @@ Releases are built by GitHub Actions and are only started by hand:
 
 The major number stays at 0 for now. All extensions share one version number,
 and each release attaches one `<name>-vX.Y.Z.aseprite-extension` per extension.
+The release notes describe every extension and its menu, built from each
+`RELEASE.md` by `scripts/release-notes.sh`. To refresh the notes of an existing
+release, run **Actions > Release notes** with its tag.
