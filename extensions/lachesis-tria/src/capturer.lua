@@ -7,7 +7,7 @@
 
 local Capturer = {}
 
-local Config, Library, Capture
+local Config, Library, Capture, UI
 
 local TITLE = "Tile Library"
 local NEW_GROUP = "(new group)"
@@ -17,10 +17,9 @@ local DEFAULT_GROUP = "General"
 local COLUMNS = 8
 local ROWS_PER_PAGE = 5
 local GAP = 4
-local MAX_CELL = 64
 
-function Capturer.init(config, library, capture)
-  Config, Library, Capture = config, library, capture
+function Capturer.init(config, library, capture, ui)
+  Config, Library, Capture, UI = config, library, capture, ui
 end
 
 local function alert(text)
@@ -87,37 +86,11 @@ local function askGrid(sprite)
   end
 end
 
--- Size of one preview cell on screen, keeping pixels square.
-local function cellSize(w, h)
-  local zoom = math.max(1, math.min(4, 40 // math.max(w, h)))
-  local cw, ch = w * zoom, h * zoom
-  local biggest = math.max(cw, ch)
-  if biggest > MAX_CELL then
-    cw = math.max(1, cw * MAX_CELL // biggest)
-    ch = math.max(1, ch * MAX_CELL // biggest)
-  end
-  return cw, ch
-end
-
-local function drawChecker(gc, x, y, w, h)
-  gc.color = Color{ r = 204, g = 204, b = 204 }
-  gc:fillRect(Rectangle(x, y, w, h))
-  gc.color = Color{ r = 153, g = 153, b = 153 }
-  local s = 8
-  for cy = 0, h - 1, s do
-    for cx = 0, w - 1, s do
-      if ((cx // s) + (cy // s)) % 2 == 1 then
-        gc:fillRect(Rectangle(x + cx, y + cy, math.min(s, w - cx), math.min(s, h - cy)))
-      end
-    end
-  end
-end
-
 -- Show the tiles and let the user pick which to keep and where to save.
 -- Returns { picked = {tiles}, group, name } or nil if cancelled.
 local function pickAndName(sprite, tiles, stats, grid)
   local w, h = grid.w, grid.h
-  local cw, ch = cellSize(w, h)
+  local cw, ch = UI.cellSize(w, h)
   local perPage = COLUMNS * ROWS_PER_PAGE
   local pages = math.max(1, (#tiles + perPage - 1) // perPage)
   local page = 1
@@ -189,7 +162,7 @@ local function pickAndName(sprite, tiles, stats, grid)
         local k = i - first
         local x = GAP + (k % COLUMNS) * (cw + GAP)
         local y = GAP + (k // COLUMNS) * (ch + GAP)
-        drawChecker(gc, x, y, cw, ch)
+        UI.drawChecker(gc, x, y, cw, ch)
         gc:drawImage(shown[i], Rectangle(0, 0, w, h), Rectangle(x, y, cw, ch))
         if ticked[i] then
           gc.color = Color{ r = 60, g = 140, b = 255 }

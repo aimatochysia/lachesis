@@ -4,8 +4,6 @@ A tile library for pixel art, like an asset library. Slice tiles out of what is 
 
 Requires Aseprite 1.3 or newer. Works on Windows, macOS and Linux.
 
-> This first release covers capturing tiles and saving them to the library. Browsing the library and stamping tiles onto a layer come next.
-
 ## Capture tiles
 
 **File > Scripts > Tile Library > Capture Tiles From Canvas...**
@@ -21,6 +19,30 @@ Requires Aseprite 1.3 or newer. Works on Windows, macOS and Linux.
    - exact duplicates (only the first copy is kept).
 3. All tiles start ticked. Click a tile to leave it out, or use **Tick All** / **Tick None**.
 4. Pick a group (or type a new one), name the entry, and press **Save**. If the name is already taken in that group, you can replace it or keep both.
+
+## Browse and stamp
+
+**File > Scripts > Tile Library > Open Library...** opens the library browser. It stays open beside the canvas while you draw.
+
+1. Pick a **Group** and an **Entry**. Its tiles show as thumbnails (use **< Prev** / **Next >** if there are many).
+2. Click a tile. It becomes your brush and the pencil tool is selected, so a ghost of the tile follows the cursor.
+3. Turn it with **Rotate Left** / **Rotate Right** (90 degrees at a time) and **Mirror H** / **Mirror V**. **Reset** puts it back as stored.
+4. Click on the canvas to stamp it. The tile's pixels are painted on the current layer, one undo step per click, and transparent pixels stay transparent. Keep clicking to stamp more copies. Turn on **View > Snap to Grid** to line stamps up with the grid.
+5. To stop stamping, pick another brush or tool.
+
+Stamps are plain pixels: nothing is linked back to the library, and no tileset or tilemap layer is created. If your sprite is indexed or grayscale, the tile's colors are mapped to the nearest colors of your sprite.
+
+**Edit Entry** opens the entry file so you can change or delete tiles (each frame is one tile). Save it and press **Refresh** in the browser.
+
+## Menu
+
+Everything is under **File > Scripts > Tile Library**:
+
+- **Capture Tiles From Canvas...**: slice the canvas into tiles and save them to a group.
+- **Open Library...**: the library browser, for picking tiles to stamp.
+- **Rotate Stamp Left** / **Rotate Stamp Right**: turn the current stamp 90 degrees.
+- **Mirror Stamp Horizontally** / **Mirror Stamp Vertically**: flip the current stamp.
+- **Tile Library Settings...**: where the library folder lives.
 
 ## Where the library lives
 
@@ -38,7 +60,7 @@ Each group is a folder. Each entry is an `.aseprite` file with one frame per til
 
 ## Shortcuts
 
-The commands have no keyboard shortcut by default; you can bind one in **Edit > Keyboard Shortcuts**.
+The commands have no keyboard shortcut by default; you can bind one in **Edit > Keyboard Shortcuts** (search for "Stamp" to find the rotate and mirror commands, handy while stamping).
 
 ## Install
 
