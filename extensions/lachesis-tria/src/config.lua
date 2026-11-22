@@ -7,6 +7,7 @@ Config.DEFAULTS = {
   lastGroup = "",     -- group picked in the last capture
   lastGrid = "",      -- "x,y,w,h" used in the last capture, for files with no saved grid
   grids = "",         -- per-file grids, one "path\tx,y,w,h" per line
+  browserBounds = "", -- "x,y,w,h" of the library browser when it was last closed
 }
 
 local prefs = nil

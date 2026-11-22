@@ -24,17 +24,28 @@ Requires Aseprite 1.3 or newer. Works on Windows, macOS and Linux.
 
 ## Browse and stamp
 
-**File > Scripts > Tile Library > Open Library...** opens the library browser. It stays open beside the canvas while you draw.
+**File > Scripts > Tile Library > Open Library...** opens the library browser. It is a small window that stays open beside the canvas while you draw. Drag its edges to make it bigger or smaller: the tile grid fills whatever space it has, and the window keeps that size (and its position) the next time you open it.
 
-1. Pick a **Group** and an **Entry**. Its tiles show as thumbnails (use **< Prev** / **Next >** if there are many).
+1. Pick a group and an entry from the two dropdowns at the top. Its tiles show as thumbnails. Scroll over the tiles, or use the arrow icons, to see more pages.
 2. Click a tile. It becomes your brush and the pencil tool is selected, so a ghost of the tile follows the cursor.
-3. Turn it with **Rotate Left** / **Rotate Right** (90 degrees at a time) and **Mirror H** / **Mirror V**. **Reset** puts it back as stored.
+3. Turn it with the icon buttons under the tiles. Hover an icon to see its name in the status line:
+
+   | Icon | Does |
+   | --- | --- |
+   | Left / right arrow | Previous / next page |
+   | Curved arrows | Rotate the stamp left / right (90 degrees) |
+   | Mirror icons | Mirror the stamp horizontally / vertically |
+   | Square | Reset rotation and mirroring |
+   | Pencil | Edit entry: opens the entry file so you can change or delete tiles (each frame is one tile) |
+   | Circle arrows | Reload the library from disk, after editing an entry |
+
+   The status line under the icons shows the page and the current stamp.
 4. Click on the canvas to stamp it. The tile's pixels are painted on the current layer, one undo step per click, and transparent pixels stay transparent. Keep clicking to stamp more copies. Turn on **View > Snap to Grid** to line stamps up with the grid.
 5. To stop stamping, pick another brush or tool.
 
-Stamps are plain pixels: nothing is linked back to the library, and no tileset or tilemap layer is created. If your sprite is indexed or grayscale, the tile's colors are mapped to the nearest colors of your sprite.
+Rotating and mirroring also have menu commands (below), so you can bind keys to them and leave the browser small.
 
-**Edit Entry** opens the entry file so you can change or delete tiles (each frame is one tile). Save it and press **Refresh** in the browser.
+Stamps are plain pixels: nothing is linked back to the library, and no tileset or tilemap layer is created. If your sprite is indexed or grayscale, the tile's colors are mapped to the nearest colors of your sprite.
 
 ## Menu
 
