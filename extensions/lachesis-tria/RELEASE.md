@@ -2,7 +2,7 @@ A tile library for pixel art, like an asset library. Slice tiles out of what is 
 
 **Menu: File > Scripts > Tile Library**
 - **Capture Tiles From Canvas...**: set the grid, untick any tiles you don't want, then save them to a group.
-- **Open Library...**: browse groups and entries, click a tile to stamp it; rotate, mirror, reset, edit entry.
+- **Open Library...**: a compact, resizable browser: pick a group and entry, click a tile to stamp it; icon buttons to page, rotate, mirror, reset, edit and reload.
 - **Rotate Stamp Left** / **Rotate Stamp Right**: turn the current stamp 90 degrees.
 - **Mirror Stamp Horizontally** / **Mirror Stamp Vertically**: flip the current stamp.
 - **Tile Library Settings...**: choose where the library folder lives (Aseprite's config folder by default).
